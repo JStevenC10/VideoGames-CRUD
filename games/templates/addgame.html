@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Add game {% endblock  %}
+
+{% block content %}
+    <h1>ADD GAME NOW!</h1>
+    <div class="card">
+        <div class="card-header">
+            Add new game...
+        </div>
+        <div class="card-body">
+            <h4 class="card-title"> Data Game</h4>
+            {% include 'form.html' %}
+        </div>
+
+    </div>
+{% endblock %}

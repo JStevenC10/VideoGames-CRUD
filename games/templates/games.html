@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} All games {% endblock  %}
+
+{% block content %}
+    
+    <div class="card">
+        <div class="card-header">
+            <p class="lead">
+                <a class="btn btn-success btn-lg" href="{% url 'add' %}">ADD NEW GAME!</a>
+            </p>
+        </div>
+        <div class="card-body">
+            <h4 class='card-title'>Games</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>PLATAFORMS</th>
+                        <th>CATEGORY</th>
+                        <th>IMAGE</th>
+                        <th>OPTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>gow</td>
+                        <td>pc</td>
+                        <td>lucha</td>
+                        <td>im</td>
+                        <td>
+                            <a href="">EDIT</a>
+                            <a href="">DELETE</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+ {% endblock %}
