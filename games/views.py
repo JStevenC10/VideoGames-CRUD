@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from .models import Game
 
 # Create your views here.
 
@@ -6,7 +7,11 @@ def blog(request):
     return render(request, 'blog.html')
 
 def games(request):
-    return render(request, 'games.html')
+    allGames = Game.objects.all()
+    context = {
+        'games' : allGames
+    }
+    return render(request, 'games.html', context)
 
 def addGame(request):
     return render(request, 'addgame.html')
