@@ -1,10 +1,16 @@
+
 <form enctype='multipart/form-data' method='POST'>
-    <div class="nb-3">
-        <label for="" class="form-label">NAME</label>
-        <input type="text"
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="nb-3">
+        <label for="" class="form-label">{{field.label}}</label>
+        <input type="{{ field.field.widget.input_type }}"
         class="form-control" 
-        placeholder="name"
-        name="" 
+        placeholder="{{field.label}}"
+        name="{{ field.name }}" 
+        value="{{ field.value }}"
         id="">
-    </div>
+        </div>
+    {% endfor %}
+    <button class="btn btn-primary btn-success" type="submit">GO!</button>
 </form>
