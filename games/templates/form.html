@@ -1,16 +1,20 @@
 
 <form enctype='multipart/form-data' method='POST'>
     {% csrf_token %}
-    {% for field in form %}
+    {% for campo in form %}
         <div class="nb-3">
-        <label for="" class="form-label">{{field.label}}</label>
-        <input type="{{ field.field.widget.input_type }}"
+        <label for="" class="form-label">{{campo.label}}</label> <br>
+        {% if campo.field.widget.input_type == 'file' and campo.value %}
+            <img src="{{MEDIA_URL}}/image/{{campo.value}}" width="100px">
+        {% endif %}
+        <input type="{{ campo.field.widget.input_type }}"
         class="form-control" 
-        placeholder="{{field.label}}"
-        name="{{ field.name }}" 
-        value="{{ field.value }}"
+        placeholder="{{campo.label}}"
+        name="{{ campo.name }}" 
         id="">
         </div>
     {% endfor %}
     <button class="btn btn-primary btn-success" type="submit">GO!</button>
+    <a class="btn btn-primary" href="{% url 'games' %}">CANCEL</a>
+    
 </form>

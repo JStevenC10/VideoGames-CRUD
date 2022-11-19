@@ -27,8 +27,14 @@ def addGame(request):
 
 def updateGame(request, id):
     updGame = Game.objects.get(id=id)
-    form = GameForm(request.POST or None, request.FILES or None, instance=Game)
-    return render(request, 'updategame.html', {'form': form})
+    if request.method == 'POST':
+        form = GameForm(request.POST or None, request.FILES or None, instance=Game)
+        if form.is_valid():
+            form.save()
+            return redirect(to=games)
+    else:
+        form = GameForm()
+        return render(request, 'updategame.html', {'form': form})
 
 
 def deleteGame(request, id):
