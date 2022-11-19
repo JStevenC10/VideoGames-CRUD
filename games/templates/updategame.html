@@ -10,7 +10,14 @@
         </div>
         <div class="card-body">
             <h4 class="card-title"> New Data Game</h4>
-            {% include 'form.html' %}
+            <form action="{% url 'update' game.id %}" method='POST'>
+                {% csrf_token %}
+                <input type="text" placeholder='{{game.name}}' name='name'>
+                <input type="text" placeholder='{{game.plataforms}}' name='plataforms'>
+                <input type="text" placeholder='{{game.category}}' name='category'> 
+                <button class="btn btn-primary btn-success" type="submit">GO!</button>
+                <a class="btn btn-primary" href="{% url 'games' %}">CANCEL</a>
+            </form>
         </div>
     </div>
 {% endblock %}
