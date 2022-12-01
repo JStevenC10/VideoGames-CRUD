@@ -7,14 +7,16 @@
         {% if campo.field.widget.input_type == 'file' and campo.value %}
             <img src="{{MEDIA_URL}}/image/{{campo.value}}" width="100px">
         {% endif %}
-        <input type="{{ campo.field.widget.input_type }}"
+        <input 
+        type="{{ campo.field.widget.input_type }}"
         class="form-control" 
         placeholder="{{campo.label}}"
+        value="{{campo.value}}"
         name="{{ campo.name }}" 
         id="">
         </div>
     {% endfor %}
     <button class="btn btn-primary btn-success" type="submit">GO!</button>
     <a class="btn btn-primary" href="{% url 'games' %}">CANCEL</a>
-    
 </form>
+

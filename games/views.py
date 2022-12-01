@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from .models import Game
 from .forms import GameForm
 
@@ -26,20 +26,14 @@ def addGame(request):
         return render(request, 'addgame.html', {'form' : form})
 
 def updateGame(request, id):
-    updGame = Game.objects.get(id=id)
+    game = Game.objects.get(id=id)
     if request.method == 'POST':
-        name = request.POST['name']
-        plataforms = request.POST['plataforms']
-        category = request.POST['category']
-        image = request.FILES['image']
-        updGame.name = name
-        updGame.plataforms = plataforms
-        updGame.category = category
-        updGame.image = image
-        updGame.save()
+        form = GameForm(request.POST, request.FILES, instance=game)
+        form.save()
         return redirect(to=games)
     else:
-        return render(request, 'updategame.html', {'game' : updGame})
+        form = GameForm(instance=game)
+        return render(request, 'updategame.html', {'form' : form})
 
 
 def deleteGame(request, id):
